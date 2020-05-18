@@ -1,0 +1,39 @@
+mat-card-title, .contentWrapper .subTitle{
+    color: #19639E
+}
+.levelWrapper{
+    padding: 20px 0
+}
+.contentWrapper{
+    padding: 15px
+}
+.tableHolder{
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+    color: #666
+}
+.tableMain{
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 15px 0
+}
+.tableMain, .tableMain td, .tableMain th{
+    border: 1px solid #ccc;
+}
+.tableMain td, .tableMain th{
+    padding:5px
+}
+.tableHolder h4, .tableMain th{
+    color: #444
+}
+.projList{
+    text-align: left;
+    font-weight: normal
+}
+.projListHead{
+    text-align: left;
+}
+  

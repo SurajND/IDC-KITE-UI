@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>User Details</h1>
+<div mat-dialog-content class="example-container">
+    <form [formGroup]="userForm" class="input-item-style">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <div fxLayout fxLayoutGap="50px">
+            <mat-form-field fxFlex="50%">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="fName">
+            </mat-form-field>
+            <mat-form-field fxFlex="50%">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lName">
+            </mat-form-field>
+          </div>
+          <div fxLayout fxLayoutGap="50px">
+            <mat-form-field fxFlex="50%">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email">
+            </mat-form-field>
+            <mat-form-field fxFlex="50%">
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="phoneNumber">
+              </mat-form-field>
+          </div>
+          <div fxLayout fxLayoutGap="50px">
+            <mat-form-field fxFlex="50%">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="roleId">
+                  <mat-option *ngFor="let role of roles$ | async" [value]="role.id">
+                    {{role.roleType}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field fxFlex="50%">
+                <mat-label>Opco</mat-label>
+                <mat-select formControlName="operationalCompanyId">
+                  <mat-option *ngFor="let opco of opcos$ | async" [value]="opco.id">
+                    {{opco.operationalCompanyName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+          <div fxLayout fxLayoutGap="50px">
+            <mat-form-field fxFlex="50%">
+              <mat-label>Project</mat-label>
+              <mat-select formControlName="projectId">
+                <mat-option *ngFor="let project of projects$ | async" [value]="project.id">
+                  {{project.projectName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>    
+          </div>
+          <mat-checkbox fxFlex="50%" formControlName="isActive" checked>Is Active</mat-checkbox>
+        </div>
+      </form>
+</div>
+<div class="user-button-margin" mat-dialog-actions>
+    <button fxFlex mat-raised-button class="btnSubmit" [mat-dialog-close]="userForm.value"
+        [disabled]="!userForm.valid">
+        <mat-icon>save</mat-icon>SAVE
+    </button>
+    <button fxFlex mat-raised-button class="btnCancel" (click)="onCancel()">
+        <mat-icon>cancel</mat-icon>CANCEL
+    </button>
+</div>

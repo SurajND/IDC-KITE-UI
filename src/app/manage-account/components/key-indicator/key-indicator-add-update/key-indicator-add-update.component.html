@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Key Indicator Details</h1>
+<div mat-dialog-content class="example-container">
+    <mat-form-field>
+        <mat-label>Key Indicator Name</mat-label>
+        <input matInput required minlength="2" [formControl]="indicator" [(ngModel)]="data.indicator">
+        <mat-error *ngIf="indicator.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+</div>
+<div class="indicator-button-margin" mat-dialog-actions>
+    <button fxFlex mat-raised-button class="btnSubmit" [mat-dialog-close]="data" cdkFocusInitial  [disabled]="!indicator.valid">
+        <mat-icon>save</mat-icon>SAVE
+    </button>
+    <button fxFlex mat-raised-button class="btnCancel" (click)="onCancel()">
+        <mat-icon>cancel</mat-icon>CANCEL
+    </button>
+</div>

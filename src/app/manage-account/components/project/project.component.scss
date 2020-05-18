@@ -1,0 +1,21 @@
+@import '../../../../styles/base.scss';
+
+.container{
+    margin-top: 1%;
+
+    .project-label-style{
+      padding: 10px;
+    }
+}
+
+.icon-align{
+    text-align: right;
+
+    .icon-style{
+        cursor: pointer;
+    }
+}
+
+table {
+    width: 100%;
+  }

@@ -1,0 +1,221 @@
+ @import '../../app.component';
+
+
+// .header-layout {
+//     min-height: 153px;
+//     background-color: $bg-primary;
+//    //background-image: linear-gradient(to bottom right, #0A4385, #00b3b3, #3275B8);
+//     // position: fixed;
+//     // top: 0;
+//     // width: 100%;
+//     // left: 0px;
+//     box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+//     -webkit-animation: fadeIn 2s;
+//     animation: fadeIn 2s;
+    
+// .danaher-img-logo {
+//   height: 155px;
+//   width: 300px;
+// }
+//     .account-icon-spacer{
+//       flex: 1 1 auto;
+//       nav{
+      
+//         padding-top:  10px;
+//         label {
+//          // color: $text-secondary;
+//          color: white;
+//           font-size: 15px;
+//           margin-left: 70px;
+//           font-family: 'GraphikRegular';
+//           cursor: pointer;
+//         }
+//         label:hover {
+//           font-weight: bold;
+//         }
+//       }
+//     }
+//     .account-img-logo{
+//       padding: 0 50px;
+//       position: relative;
+//       bottom: 25px;
+//       cursor: pointer;
+    
+//     }
+//   }
+
+// // footer{
+// //   position: absolute; 
+// //   left: 0 ; 
+// //   right: 0;
+// //   bottom: 0; 
+// //   min-height: 200px;
+// //   background-color: $bg-primary;
+// //   font-family: 'GraphikRegular';
+// //       h6{
+// //         margin: 0;
+// //         text-align: center;
+// //         color: #85a1c2;
+// //         font-size: 14px;
+// //         line-height: 32px;
+// //         line-height: 3.2rem
+// //       }
+// // }
+
+// .page-height{
+//   height: 100vh;
+//   -webkit-animation: fadeIn 2s;
+//   animation: fadeIn 2s;
+// }
+
+.container{
+  height: 100%;
+  width: 100%;
+  color: #000!important;
+  background-color: #f1f1f1!important;
+
+  mat-toolbar{
+    -webkit-animation: fadeIn  1s;
+       animation: fadeIn  1s;
+  }
+}
+
+.kite-heading {
+  color: $bg-white;
+  font-size: 25px;
+  top: 10px;
+  left: 40px;
+  //text-shadow: 2px 2px $bg-black;
+  font-family: 'GraphikRegular';
+  letter-spacing: 2px;
+  font-weight: 500;
+  //font-style: italic;
+  position: relative;
+  -webkit-animation: fadeIn  1s;
+  animation: fadeIn  1s;
+  
+}
+
+.kite-sub-heading{
+ // text-align: center;
+  color: $bg-white;
+  font-size: 12px;
+  margin-left: 80px;
+  //text-shadow: 2px 2px $bg-black;
+
+  font-family: 'GraphikRegular';
+  letter-spacing: 2px;
+  text-transform: uppercase;
+//  font-style: italic;
+  -webkit-animation: fadeIn  1s;
+  animation: fadeIn  1s;
+}
+
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+// .kite-header-style{
+//   padding: 50px 0 30px 70px;
+// }
+
+.toolbar-style{
+ 
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+
+  background-color: $bg-primary;
+  .account-img-logo{
+    padding: 10px 14px;
+    cursor: pointer;
+  }
+  .icon-spacer {
+    flex: 1 1 auto;
+  }
+}
+
+
+
+mat-sidenav-container{  
+    height: 100%;
+    width: 100%;
+    color: #000!important;
+    background-color: #f1f1f1!important;
+    z-index: 1;
+    margin-top: 64px;
+}
+
+mat-sidenav{
+    width: 300px;
+    position: fixed;
+    top: 64px;
+    animation:animateleft 0.4s;
+
+}
+@keyframes animateleft{0%{left:-300px;opacity:0} 100%{left:0;opacity:1}}
+
+.nav-item-style{
+  height: 48px;
+padding-left: 24px!important;
+text-align: left;
+display: flex;
+align-items: center;
+font-family: 'GraphikRegular';
+font-family: Roboto,"Helvetica Neue",sans-serif;
+font-size: 15px;
+font-weight: 400;
+cursor: pointer;
+}
+
+.hover-style :hover{
+  border-radius: 0;
+  background-color: lightgray;
+}
+
+.active-side-nav{
+    //background-color: $bg-secondary;
+    background-color: #039be5!important;
+    color: white;
+}
+
+.mat-expansion-panel{
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.nav-link-icon{
+    margin-right: 16px;
+}
+
+.header-icon-style{
+   color: white;
+}
+
+.account-layout-style{
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-details-style{
+   text-align: center;
+    margin-bottom: 20px;
+}
+
+.nav-heading-style{
+  padding-left: 24px !important;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    font-size: 15px;
+}
+
+

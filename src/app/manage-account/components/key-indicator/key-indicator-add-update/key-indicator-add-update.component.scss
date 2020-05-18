@@ -1,0 +1,14 @@
+@import '../../../../../styles/base.scss';
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  .indicator-button-margin{
+    margin-top: 20px;
+  }

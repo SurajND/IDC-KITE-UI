@@ -1,0 +1,27 @@
+<div class="container" fxLayout>
+  <div fxFlex></div>
+  <div fxFlex="95%">
+    <mat-card class='animateup'>
+      <mat-card-title fxLayout>
+        <label class="indicators-label-style" fxFlex>Key Indicators</label>
+        <div fxFlex fxLayoutAlign='end'>
+          <button mat-raised-button class="btnSubmit" (click)='addKeyIndicator()'>ADD</button>
+        </div>
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <div>
+        <mat-list *ngFor="let keyIndicator of keyIndicators$ | async; last as last">
+          <div fxLayout>
+            <mat-list-item fxFlex="95%" class="basic-font-style">
+              {{keyIndicator.indicator}}</mat-list-item>
+              <div fxFlex="5%" fxLayoutAlign="center">
+                <mat-icon class='icon-style' matTooltip="Edit" (click)='openDialog(keyIndicator)'>edit</mat-icon>
+              </div>
+          </div>
+          <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+        </mat-list>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex></div>
+</div>

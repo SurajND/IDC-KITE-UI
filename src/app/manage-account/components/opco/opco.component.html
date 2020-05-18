@@ -1,0 +1,28 @@
+<div class="container" fxLayout>
+  <div fxFlex></div>
+  <div fxFlex="95%">
+    <mat-card class='animateup'>
+      <mat-card-title fxLayout>
+        <label class="opco-label-style" fxFlex>Operating Companies</label>
+        <div fxFlex fxLayoutAlign='end'>
+          <button mat-raised-button class="btnSubmit" (click)='addOpco()'>ADD</button>
+        </div>
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <div>
+        <mat-list *ngFor="let opco of opcos$ | async; last as last">
+          <div fxLayout>
+            <mat-list-item fxFlex="95%" class="basic-font-style">
+              {{opco.operationalCompanyName}}
+            </mat-list-item>
+            <div fxFlex="5%" class='icon-align' fxLayoutAlign="center">
+              <mat-icon class='icon-style' matTooltip="Edit" (click)='openDialog(opco)'>edit</mat-icon>
+            </div>
+          </div>
+          <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+        </mat-list>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex></div>
+</div>

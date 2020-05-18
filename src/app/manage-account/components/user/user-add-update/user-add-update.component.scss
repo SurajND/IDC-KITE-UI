@@ -1,0 +1,18 @@
+@import '../../../../../styles/base.scss';
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  .user-button-margin{
+    margin-top: 20px;
+  }
+
+  .mat-dialog-content{
+      overflow: hidden;
+  }

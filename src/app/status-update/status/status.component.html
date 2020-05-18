@@ -1,0 +1,61 @@
+<div class="container" fxLayout fxLayoutAlign='center'>
+  <div fxFlex></div>
+  <div fxFlex="70%">
+    <mat-card>
+      <mat-card-title>Status Update</mat-card-title>
+      <mat-divider></mat-divider>
+      <form [formGroup]="statusForm" (ngSubmit)="onSubmit()">
+        <div FxLayout fxLayoutGap="10%" class='label-layout'>
+          <div fxFlex="40%" FxLayout fxLayoutGap="10%">
+            <mat-label fxFlex="40%">Project:</mat-label>
+            <span fxFlex="40%"></span>
+          </div>
+          <div fxFlex="40%">
+            <mat-label>Opco:</mat-label>
+            <span>{{OpcoName}}</span>
+          </div>
+        </div>
+        <div FxLayout fxLayoutGap="10%" class='label-layout'>
+          <div fxFlex="40%" FxLayout fxLayoutGap="10%">
+            <mat-label fxFlex="40%">Month:</mat-label>
+            <input fxFlex="40%" formControlName="month" disabled>
+          </div>
+          <div fxFlex="40%">
+            <mat-label fxFlex="40%">Year:</mat-label>
+            <input fxFlex="40%" formControlName="year" disabled>
+          </div>
+        </div>
+        <div FxLayout fxLayoutGap="10%" class='label-layout'>
+          <div fxFlex="40%" FxLayout fxLayoutGap="10%">
+            <mat-label fxFlex="40%">Manager:</mat-label>
+            <input fxFlex="40%" formControlName="manager" disabled>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div FxLayout fxLayoutGap="10%" *ngFor="let keyIndicator of keyIndicators; let i=index; trackBy: addKeyIndicator"  class= "indicator-label-layout" formArrayName="formKeyIndicators">
+          <div [formGroupName]="i">
+            <mat-form-field fxFlex="30%">
+             
+                <input matInput [value]="keyIndicator.indicator" formControlName="keyIndicator">
+               
+            </mat-form-field>
+            <mat-form-field fxFlex="15%">
+            <input matInput placeholder="Monthly Actual" formControlName="monthlyActual">
+            </mat-form-field>
+            <mat-form-field fxFlex="15%">
+              <input matInput placeholder="Monthly Target" formControlName="monthlyTarget">
+            </mat-form-field>
+            <mat-form-field fxFlex="15%">
+              <input matInput placeholder="Yearly Target" formControlName="yearlyTarget">
+            </mat-form-field>
+          </div>
+          
+        </div>
+        <div>
+          <button mat-raised-button class="btnSubmit">SAVE</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  <div fxFlex></div>
+</div>

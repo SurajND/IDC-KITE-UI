@@ -1,0 +1,65 @@
+<div class="container" fxLayout>
+  <div fxFlex></div>
+  <div fxFlex="60%" fxFlex.xs="100%">
+    <mat-card class="card-style">
+      <mat-card-title>My Profile</mat-card-title>
+      <mat-divider></mat-divider>
+      <div>
+        <form [formGroup]="userForm" (submit)="onSubmit()">
+          <div fxLayout fxLayoutAlign='center'>
+            <label fxFlex="30%">First Name:</label>
+            <label fxFlex="30%" *ngIf='!editable'>{{user.fName}}</label>
+            <mat-form-field  *ngIf='editable' fxFlex="30%">
+              <input matInput fxFlex formControlName="firstName">
+            </mat-form-field>
+          </div>
+          <div fxLayout fxLayoutAlign='center'>
+            <label fxFlex="30%">Last Name:</label>
+            <label fxFlex="30%" *ngIf='!editable'>{{user.lName}}</label>
+            <mat-form-field *ngIf='editable' fxFlex="30%">
+              <input fxFlex matInput [readonly]=!editable formControlName="lastName">
+            </mat-form-field>
+          </div>
+          <div fxLayout fxLayoutAlign='center'>
+            <label fxFlex="30%">Phone Number:</label>
+            <label fxFlex="30%" *ngIf='!editable'>{{user.phoneNumber}}</label>
+            <mat-form-field *ngIf='editable' fxFlex="30%">
+              <input matInput formControlName="phoneNumber">
+            </mat-form-field>
+          </div>
+          <div fxLayout fxLayoutAlign='center'>
+            <label fxFlex="30%">Email:</label>
+            <label fxFlex="30%">{{user.email}}</label>
+          </div>
+          <div fxLayout fxLayoutAlign='center'>
+            <label fxFlex="30%">Role:</label>
+            <label fxFlex="30%">{{user.role.roleType}}</label>
+          </div>
+          <div fxLayout fxLayoutAlign='center'>
+            <label fxFlex="30%">Opco:</label>
+            <label fxFlex="30%">{{user.operationalCompany? user.operationalCompany.operationalCompanyName : 'N/A'}}</label>
+          </div>
+          <div fxLayout fxLayoutAlign='center'>
+            <label fxFlex="30%">Project:</label>
+            <label fxFlex="30%">{{user.project? user.project.projectName : 'N/A'}}</label>
+          </div>
+          <div fxLayout class='profile-button-margin' fxLayoutAlign='center'>
+            <div *ngIf='!editable'>
+              <button fxFlex mat-raised-button class="btnSubmit" (click)='onEdit()'>
+                EDIT</button>
+            </div>
+            <div *ngIf='editable' fxLayoutGap="50px">
+              <button fxFlex mat-raised-button class="btnSubmit">
+                <mat-icon>save</mat-icon>SAVE
+              </button>
+              <button fxFlex mat-raised-button class="btnCancel" (click)='onCancel()'>
+                <mat-icon>cancel</mat-icon>CANCEL
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex></div>
+</div>

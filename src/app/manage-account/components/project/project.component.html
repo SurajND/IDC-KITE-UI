@@ -1,0 +1,46 @@
+<div class="container" fxLayout>
+  <div fxFlex></div>
+  <div fxFlex="95%">
+    <mat-card class='animateup'>
+      <mat-card-title fxLayout>
+        <label class="project-label-style" fxFlex>Projects</label>
+        <div fxFlex fxLayoutAlign='end'>
+          <button mat-raised-button class="btnSubmit" (click)="onAdd()">ADD</button>
+        </div>
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <table mat-table [dataSource]="projects$ | async">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Project Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>Project Name</th>
+          <td mat-cell *matCellDef="let element">
+            <span>{{element.projectName}} </span>
+          </td>
+        </ng-container>
+
+        <!-- Opco Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Opco Name</th>
+          <td mat-cell *matCellDef="let element">
+            <span> {{element.operationalCompany.operationalCompanyName}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell class='icon-align' *matCellDef="let element">
+            <mat-icon class='icon-style' matTooltip="Edit" (click)='openDialog(element)'>edit</mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card>
+  </div>
+  <div fxFlex></div>
+</div>

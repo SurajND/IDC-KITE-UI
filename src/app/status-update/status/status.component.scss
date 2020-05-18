@@ -1,0 +1,20 @@
+@import '../../app.component';
+
+.container{
+    margin-top: 2%;
+    font-size: 14px;
+}
+
+.label-layout{
+    margin: 3% 0;
+
+    input{
+        border: 0;
+        color: gray;
+        background-color: white;
+    }
+}
+
+.indicator-label-layout{
+    margin: 5% 0;
+}

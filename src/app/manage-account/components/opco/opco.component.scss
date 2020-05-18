@@ -1,0 +1,52 @@
+@import '../../../../styles/base.scss';
+
+.container{
+    margin-top: 1%;
+
+    .opco-label-style{
+padding: 10px;
+    }
+}
+
+.icon-align{
+    margin-top: 1%;
+
+    .icon-style{
+        cursor: pointer;
+    }
+    .icon-style:hover{
+        background-color: lightgrey;
+        
+    }
+    .icon-style:active{
+        background-color: lightgrey;
+        
+    }
+}
+
+.selected{
+    background-color: lightgrey;;
+}
+
+
+
+.alert-danger{
+  color: RED;
+ font-size: 12px;
+}
+
+.blue-snackbar {
+    background: #2196F3;
+  }
+
+  .my-snack-bar {
+    background-color: #E8EAF6;
+}
+
+.my-snack-bar button {
+    background-color: gray;
+    color: white;
+}
+
+
+

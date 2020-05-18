@@ -1,0 +1,67 @@
+<!-- <div class="top-layout">
+  <img src="../../../assets/images/danaher.png">
+</div> -->
+<div class='container' fxLayout fxLayoutAlign="center">
+  <div fxFlex='2%'></div>  
+  <div fxFlex='33%' fxLayoutGap='20px' style="padding-top: 250px;">
+    <p-carousel [value]="cars" [circular]="true" [autoplayInterval]="2000">
+      <ng-template let-car pTemplate="item">        
+          <mat-card class='login-imgset-style'>
+            <div fxLayout fxLayoutGap='20px'>
+             <mat-card fxFlex>
+              <img mat-card-image [src]="car.opco1">
+             </mat-card>
+             <mat-card fxFlex>
+              <img mat-card-image [src]="car.opco2">
+             </mat-card>
+             <mat-card fxFlex>
+              <img mat-card-image [src]="car.opco3">
+             </mat-card>
+            </div>
+          </mat-card>
+      </ng-template>
+    </p-carousel>    
+  </div>
+  <div fxFlex='10%'></div>
+  <div class='login-center' fxFlex='25%' fxFlex.xs='100%'>
+    <mat-card class="login-card">
+      <div class="kite-heading">KITE</div>
+      <div class="kite-sub-heading">Project Hub</div>
+      <mat-card-content class="form-margin">
+        <div class='login-error' *ngIf="invalidCredentials">
+         Invalid credentials!!
+        </div>
+        <form  [formGroup]="loginForm" (submit)="onSubmit(loginForm)">
+          <div class="form-field-margin">
+            <label class="label-style">Username</label>
+            <input type='text' class='login-input-style' formControlName="userName" id="login">
+          </div>
+          <div class='login-error' *ngIf="login.invalid && (login.dirty || login.touched)">
+            <div *ngIf="login.errors.required">
+              Username is required.
+            </div>
+            <div *ngIf="login.errors.minlength">
+              Username must be at least 6 characters long.
+            </div>
+          </div>
+          <div class="form-field-margin">
+            <label class="label-style">Password</label>
+            <input type='password' class='login-input-style' formControlName="password">
+          </div>
+          <div class='login-error' *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors.required">
+              Password is required.
+            </div>
+            <div *ngIf="password.errors.minlength">
+              Password must be at least 6 characters long.
+            </div>
+          </div>
+          <div>
+            <button mat-raised-button>LOGIN</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex='2%'></div>
+</div>

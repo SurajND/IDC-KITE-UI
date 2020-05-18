@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import 'styles/fonts';
+@import 'styles/colors';
+@import 'styles/base';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    min-height:100%; 
+//     position:relative; 
+//    padding-bottom:200px;
+}
+
+.error{
+    color: $error-color;
+    font-size: 14px;
+    font-family: GraphikSemibold;
+}

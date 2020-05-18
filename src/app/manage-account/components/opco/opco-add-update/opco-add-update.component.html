@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Opco Details</h1>
+<div mat-dialog-content class="example-container">
+    <mat-form-field>
+        <mat-label>Opco's Name</mat-label>
+        <input matInput required minlength="2" [formControl]="operationalCompanyName" [(ngModel)]="opco.operationalCompanyName">
+        <mat-error *ngIf="operationalCompanyName.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+</div>
+<div class="opco-button-margin" mat-dialog-actions>
+    <button fxFlex mat-raised-button class="btnSubmit" [mat-dialog-close]="opco" cdkFocusInitial  [disabled]="!operationalCompanyName.valid">
+        <mat-icon>save</mat-icon>SAVE
+    </button>
+    <button fxFlex mat-raised-button class="btnCancel" (click)="onCancel()">
+        <mat-icon>cancel</mat-icon>CANCEL
+    </button>
+</div>

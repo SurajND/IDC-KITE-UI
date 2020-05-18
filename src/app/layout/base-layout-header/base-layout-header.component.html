@@ -1,0 +1,132 @@
+<div class='container' fxLayout='column'>
+  <!-- <header fxFlex>
+    <div class="header-layout">
+      <div fxLayoutAlign='center' >
+        <img class="watermark" src="../../../assets/images/danaher-trans.png">
+      </div>
+      <div class='kite-header-style'>
+        <div class="kite-heading">KITE</div>
+        <div class="kite-sub-heading">Project Hub</div>
+      </div>
+     
+      <div class='account-icon-spacer'>
+        <nav fxLayout.xs="column">
+          <span *ngFor="let item of NavItems; let i = index">
+            Handle menu with submenu here
+            <span *ngIf="item.subMenu && item.subMenu.length > 0">
+              <label [matMenuTriggerFor]="subMenu">
+                {{item.linkText | uppercase}}
+              </label>
+              <mat-menu #subMenu="matMenu">
+                <label *ngFor='let submenuitem of item.subMenu' [routerLink]='submenuitem.navigateTo'
+                  mat-menu-item>{{submenuitem.linkText}}</label>
+              </mat-menu>
+            </span>
+            Handle menu here
+            <span *ngIf="!item.subMenu || item.subMenu.length === 0">
+              <label [routerLink]='item.navigateTo'>
+                {{item.linkText | uppercase}}
+              </label>
+            </span>
+          </span>
+          <span fxLayoutAlign="end">
+            <img [matMenuTriggerFor]="menu" class="account-img-logo"
+            src="../../../assets//icons/ic_account_circle_white_36dp.png">
+          <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item [routerLink]="['/home-component/my-profile']">My Profile</button>
+            <button mat-menu-item (click)="openDialog()">Change Password</button>
+            <button mat-menu-item [routerLink]="['/home-component/read-me']">Read me</button>
+            <button mat-menu-item (click)='logout()'>Logout</button>
+          </mat-menu>
+          </span>     
+        </nav>
+      </div>
+    </div>
+  </header> -->
+
+
+
+  <body>
+    <!-- Top container -->
+
+    <mat-toolbar class='toolbar-style'>
+      <mat-icon class="header-icon-style" *ngIf="isSmallScreen()" (click)="sidenav.toggle()">menu</mat-icon>
+      <div class='kite-header-style'>
+        <div class="kite-heading">KITE</div>
+        <div class="kite-sub-heading">Project Hub</div>
+      </div>
+      <span class="icon-spacer"></span>
+      <span>
+        <mat-icon [matMenuTriggerFor]="menu" class="account-img-logo header-icon-style">more_vert</mat-icon>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item [routerLink]="['/home-component/my-profile']">My Profile</button>
+          <button mat-menu-item (click)="openDialog()">Change Password</button>
+          <button mat-menu-item [routerLink]="['/home-component/read-me']">Read me</button>
+          <button mat-menu-item (click)='logout()'>Logout</button>
+        </mat-menu>
+      </span>
+    </mat-toolbar>
+    <mat-sidenav-container>
+
+      <mat-sidenav mode="side" #sidenav [opened]="!isSmallScreen()" [mode]="isSmallScreen() ? 'over': 'side'">
+        <div class="account-layout-style">
+          <img src="../../../assets/icons/ic_account_circle_black_36dp.png">
+        </div>
+        <div fxLayout='column' class="account-details-style" fxLayoutGap="5px">
+          <h4 fxFlex>{{currentUser.fName}} {{currentUser.lName}}</h4>
+          <span fxFlex>{{currentUser.email}}</span>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="nav-heading-style">APPLICATIONS</div>
+        <div class="hover-style" routerLinkActive="active-side-nav" *ngFor="let item of NavItems; let i = index;">
+          <!-- Handle menu with submenu here -->
+          <span *ngIf="item.subMenu && item.subMenu.length > 0">
+            <mat-accordion>
+              <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon class="nav-link-icon">{{item.icon}}</mat-icon>
+                    <label>{{item.linkText}}</label>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+
+                <label routerLinkActive="active-side-nav" *ngFor='let submenuitem of item.subMenu'
+                  [routerLink]='submenuitem.navigateTo' mat-menu-item>{{submenuitem.linkText}}</label>
+
+              </mat-expansion-panel>
+            </mat-accordion>
+
+          </span>
+          <!-- Handle menu here -->
+          <div class="nav-item-style" [routerLink]='item.navigateTo' *ngIf="!item.subMenu || item.subMenu.length == 0">
+            <mat-icon class="nav-link-icon">{{item.icon}}</mat-icon>
+            <label>
+              {{item.linkText}}
+            </label>
+          </div>
+
+        </div>
+      </mat-sidenav>
+
+      <mat-sidenav-content class="account-layout-sidenav-content">
+        <!-- <button *ngIf="isSmallScreen()" mat-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button> -->
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+
+
+
+    <!-- <app-sidenav class='page-height' [manageAccountNavConstants]="NavItems"></app-sidenav> -->
+    <!-- <div fxFlex class='page-height'>
+      <router-outlet></router-outlet>
+    </div> -->
+  </body>
+
+
+  <!-- <footer>
+    <h6>KITE V2.0@2019 | All Rights Reserved</h6>
+  </footer> -->
+</div>

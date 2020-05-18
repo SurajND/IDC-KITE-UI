@@ -1,0 +1,23 @@
+@import '../../app.component';
+
+.readme-text-layout{
+  padding: 30px;
+  font-family: 'GraphikRegular';
+  font-size: 15px;
+  line-height: 25px;
+  h2 {
+     font-weight: bold; 
+  }
+  ul{
+      padding: 20px;
+  }
+  .readme-content-layout{
+      margin-top: 15px;
+      h2{
+          color: $heading-primary;
+      }
+      p{
+          margin-top: 10px;
+      }
+  }
+}

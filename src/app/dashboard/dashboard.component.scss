@@ -1,0 +1,38 @@
+@import '../../app/app.component';
+@import '../../styles/base.scss';
+
+.container{
+    margin: 2%;
+
+    .dashboard-label-style{
+        padding: 12px;
+        color: #19639E;
+        font-size: 20px;
+    }
+}
+canvas{   
+    padding: 20px;
+    margin: 5% 0 2% 0;
+}
+
+.graph-text-style{
+    text-align: center;
+    color: #19639E;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 1%;
+}
+
+.pie-text-style{
+    text-align: center;
+    color: rgb(50, 120, 201);
+    font-size: 15px;
+    font-weight: 200;
+    padding: 1%;
+}
+
+mat-select{
+    padding-right: 10px;
+    background-color: white;
+    padding: 20px;
+}

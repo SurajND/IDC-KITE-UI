@@ -1,0 +1,82 @@
+  <div class="container">
+    <div fxLayout>
+      <div fxFlex>
+        <mat-select [(ngModel)]="selectedOpco" (ngModelChange)="opcoChange()" placeholder="Select a Opco">
+          <mat-option>All</mat-option>
+          <mat-option *ngFor="let opco of opcos" [value]="opco.id">
+            {{opco.operationalCompanyName}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <div fxFlex>
+        <mat-select [(value)]="selectedYear" placeholder="Select a Year">
+          <mat-option>All</mat-option>
+          <mat-option value="2020">2020</mat-option>
+          <mat-option value="2019">2019</mat-option>
+          <mat-option value="2018">2018</mat-option>
+        </mat-select>
+      </div>
+      <div fxFlex>
+        <mat-select [(value)]="selectedQuater" placeholder="Select a Quarter">
+          <mat-option>All</mat-option>
+          <mat-option value="Q4">Q4</mat-option>
+          <mat-option value="Q3">Q3</mat-option>
+          <mat-option value="Q2">Q2</mat-option>
+          <mat-option value="Q1">Q1</mat-option>
+        </mat-select>
+      </div>
+    </div>    
+
+    <div *ngFor="let opco of opcoPieData">      
+      <mat-card class='animateup'>
+        <label class="dashboard-label-style">{{opco.name}}</label>
+        <p-carousel [value]="opco.chart" [numVisible]="4" [numScroll]="4">
+          <ng-template let-keyIndicators pTemplate="item">                   
+              <p-chart type="doughnut" [data]="keyIndicators" [options]="keyIndicators.options"></p-chart>
+          </ng-template>
+        </p-carousel>
+      </mat-card>
+    </div>
+    
+    <mat-card class='animateup'>
+      <label class="dashboard-label-style">IDC Opco Overview</label>
+      <div fxLayout>
+        <div fxFlex></div>
+        <div fxFlex="95%">      
+            <div fxFlex="100%">
+              <p-carousel [value]="datas" [numVisible]="1" [numScroll]="1" [circular]="true">
+                <ng-template let-keyIndicator pTemplate="item">
+                  <div class="graph-text-style"> {{keyIndicator.Indicator}}</div>
+                  <p-chart type="bar" [data]="keyIndicator"></p-chart>                    
+                </ng-template>
+              </p-carousel>              
+            </div>
+        </div>
+        <div fxFlex></div>    
+      </div>
+    </mat-card>    
+    <mat-card class='animateup'>
+      <div fxLayout>
+        <div fxFlex="95%">      
+            <div fxFlex="50%">
+            <label class="dashboard-label-style">Yearly {{selectedYear}}</label>
+              <p-carousel [value]="datas" [numVisible]="1" [numScroll]="1" [circular]="true">
+                <ng-template let-keyIndicator pTemplate="item">
+                  <div class="graph-text-style"> {{keyIndicator.Indicator}}</div>
+                  <p-chart type="bar" [data]="keyIndicator"></p-chart>                    
+                </ng-template>
+              </p-carousel>              
+            </div> 
+            <div fxFlex="50%">
+            <label class="dashboard-label-style">Quaterly {{selectedQuater}}</label>
+              <p-carousel [value]="datas" [numVisible]="1" [numScroll]="1" [circular]="true">
+                <ng-template let-keyIndicator pTemplate="item">
+                  <div class="graph-text-style"> {{keyIndicator.Indicator}}</div>
+                  <p-chart type="bar" [data]="keyIndicator"></p-chart>                    
+                </ng-template>
+              </p-carousel>              
+            </div> 
+        </div>  
+      </div>
+    </mat-card>    
+</div>

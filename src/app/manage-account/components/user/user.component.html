@@ -1,0 +1,26 @@
+<div class="container" fxLayout>
+  <div fxFlex></div>
+  <div fxFlex="95%">
+    <mat-card class='animateup'>
+      <mat-card-title fxLayout>
+        <label class="user-label-style" fxFlex>Users</label>
+        <div fxFlex fxLayoutAlign='end'>
+          <button mat-raised-button class="btnSubmit" (click)="addUser()">ADD</button>
+        </div>
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <div>
+        <mat-list *ngFor="let user of users$ | async; last as last">
+          <div fxLayout>
+            <mat-list-item fxFlex="95%" class="basic-font-style">{{user.fName}}</mat-list-item>
+            <div fxFlex="5%" class='icon-align' fxLayoutAlign="center">
+              <mat-icon class='icon-style' matTooltip="Edit" (click)='openDialog(user)'>edit</mat-icon>
+            </div>
+          </div>
+          <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+        </mat-list>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex></div>
+</div>

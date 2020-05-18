@@ -1,0 +1,38 @@
+@import './colors.scss';
+
+.btnSubmit{
+    border: none;
+    background: $bg-secondary;
+    //color: $text-secondary;
+    color: white;
+    padding: 5px 40px;
+    border-radius: 0
+}
+
+.btnCancel{
+    border: none;
+    background: $button-secondary;
+    padding: 5px 40px;
+    border-radius: 0
+}
+
+mat-card{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 0px;
+}
+
+mat-card-title, .mat-dialog-title{
+    color: #19639E;
+    font-size: 20px;
+}
+
+
+.basic-font-style{
+    font-size: 14px;
+}
+
+.animateup{
+    animation:animateup 0.4s;
+}
+@keyframes animateup{0%{bottom:-300px;opacity:0} 100%{bottom:0;opacity:1}}

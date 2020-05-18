@@ -1,0 +1,17 @@
+.hitMissInfo{
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    font-size: 0.8em
+}
+.hitDiv, .missDiv{
+    height: 10px;
+    width: 13px;
+    background: green;
+    display: inline-block;
+    margin-right: 3px;
+    margin-left: 15px;
+}
+.missDiv{
+    background: #db1414;
+}

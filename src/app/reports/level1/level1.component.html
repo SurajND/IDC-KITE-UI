@@ -1,0 +1,156 @@
+<div class='container levelWrapper' fxLayout fxLayoutAlign="center">
+  <div class='status-card-margin' fxFlex="80%" fxFlex.xs='100%'>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>IDC Level-1: OTD and Quality</mat-card-title>
+      <hit-miss></hit-miss>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content class="contentWrapper">
+        <div class='container'>
+          <p class="subTitle">BECKMAN COULTER</p>
+          <mat-tab-group (selectedTabChange)='tabClicked($event)' mat-align-tabs="end">
+            <mat-tab label="3 Months">
+              <div class="tableHolder">
+                <h4>OTD Targets [PSP Owner: {{userName}}]</h4>
+                <p>Percentage of teams meeting OTD targets</p>
+                <table id='OTD3' class="tableMain">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th *ngFor="let head of tableHead3">{{head}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Target</th>
+                      <td class='tableData' *ngFor="let obj of obj3">{{obj.otd_target}}</td>
+                    </tr>
+                    <tr>
+                      <th>Actual</th>
+                      <td class='tableData' *ngFor="let obj of obj3">{{obj.otd_monthly}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tableHolder">
+                <h4>Quality Targets [PSP Owner: {{userName}}]</h4>
+                <p>Percentage of teams meeting Quality targets</p>
+                <table id='QTY3' class="tableMain">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th *ngFor="let head of tableHead3">{{head}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Target</th>
+                      <td class='tableData' *ngFor="let obj of obj3">{{obj.quality_target}}</td>
+                    </tr>
+                    <tr>
+                      <th>Actual</th>
+                      <td class='tableData' *ngFor="let obj of obj3">{{obj.quality_monthly}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </mat-tab>
+            <mat-tab label="6 Months">
+              <div class="tableHolder">
+                <h4>OTD Targets [PSP Owner: {{userName}}]</h4>
+                <p>Percentage of teams meeting OTD targets</p>
+                <table id='OTD6' class="tableMain">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th *ngFor="let head of tableHead6">{{head}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Target</th>
+                      <td class='tableData'*ngFor="let obj of obj6">{{obj.otd_target}}</td>
+                    </tr>
+                    <tr>
+                      <th>Actual</th>
+                      <td class='tableData'*ngFor="let obj of obj6">{{obj.otd_monthly}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tableHolder">
+                <h4>Quality Targets [PSP Owner: {{userName}}]</h4>
+                <p>Percentage of teams meeting Quality targets</p>
+                <table id='QTY6' class="tableMain">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th *ngFor="let head of tableHead6">{{head}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Target</th>
+                      <td class='tableData'*ngFor="let obj of obj6">{{obj.quality_target}}</td>
+                    </tr>
+                    <tr>
+                      <th>Actual</th>
+                      <td class='tableData'*ngFor="let obj of obj6">{{obj.quality_monthly}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </mat-tab>
+            <mat-tab label="12 Months">
+              <div class="tableHolder">
+                <h4>OTD Targets [PSP Owner: {{userName}}]</h4>
+                <p>Percentage of teams meeting OTD targets</p>
+                <table id='OTD12' class="tableMain">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th *ngFor="let head of tableHead12">{{head}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Target</th>
+                      <td class='tableData'*ngFor="let obj of obj12">{{obj.otd_target}}</td>
+                    </tr>
+                    <tr>
+                      <th>Actual</th>
+                      <td class='tableData'*ngFor="let obj of obj12">{{obj.otd_monthly}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tableHolder">
+                <h4>Quality Targets [PSP Owner: {{userName}}]</h4>
+                <p>Percentage of teams meeting Quality targets</p>
+                <table id='QTY12' class="tableMain">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th *ngFor="let head of tableHead12">{{head}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Target</th>
+                      <td class='tableData'*ngFor="let obj of obj12">{{obj.quality_target}}</td>
+                    </tr>
+                    <tr>
+                      <th>Actual</th>
+                      <td class='tableData'*ngFor="let obj of obj12">{{obj.quality_monthly}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
