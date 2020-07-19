@@ -15,7 +15,7 @@
     "gulp": "^3.9.1",
     "hbs": "~4.0.1",
     "json-query": "^2.2.2",
-    "knex": "^0.14.6",
+    "knex": "^0.19.5",
     "method-override": "^2.3.10",
     "morgan": "~1.9.0",
     "nodemailer": "^4.4.1",
