@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectKeyIndicator } from '../shared/models/projectKeyIndicator.model';
 import { KeyIndicator } from '../shared/models/keyIndicator.model';
-import { ProjectKeyIndicatorYear } from '../shared/models/projectKeyIndicatorYear.model';
+import { ProjectKeyIndicatorYear, AllOpcosForYear, OpcosForYear } from '../shared/models/projectKeyIndicatorYear.model';
 import { Opco } from '../shared/models/opco.model';
 import { ProjectKeyIndicatorService } from '../shared/services/projectKeyIndicator.service';
 import { KeyIndicatorService } from '../shared/services/key-indicator.service';
@@ -39,6 +39,9 @@ export class DashboardComponent implements OnInit {
   options: any;
   opcoPieData: any[] = [];
   opcoBarDataAll: any[] = [];
+  allOpcosForYear: AllOpcosForYear;
+  opcosForYear : OpcosForYear;
+  yearsList: number[] = [];
 
   opcos: Opco[];
 
@@ -47,40 +50,33 @@ export class DashboardComponent implements OnInit {
       private keyIndicatorService: KeyIndicatorService,
       private projectKeyIndicatorYearService: ProjectKeyIndicatorYearService,
       private opcoService: OpcoService) {
-        
   }
 
 
 
   ngOnInit() {
-      // this.projectKeyIndicatorService.getProjectKeyIndicatorsByYear(this.curryear).pipe(filter(res => res)).subscribe(
-      //     res => {
-      //         this.projectKeyIndicators = res;
-      //     }
-      // )
 
+    //set the dropdown for years
+    this.selectedYear = this.curryear;
+    for (let i = new Date().getFullYear(); i >= 2000 ; i--){
+        this.yearsList.push(i);
+    }
 
-      this.keyIndicatorService.getKeyIndicators().pipe(filter(res => !!res)).subscribe(res =>
-          {
-              this.keyIndicators = res;            
-          }         
-      )
-
-      // this.projectKeyIndicatorYearService.getProjectKeyIndicatorYearByYear(this.curryear).pipe(filter(res => !! res)).subscribe(
-      //     res =>{
-      //         this.projectKeyIndicatorYears = res;
-      //         console.log(this.projectKeyIndicatorYears);
-      //     }        
-      // )
+    //get keyindicators list
+    this.keyIndicatorService.getKeyIndicators().pipe(filter(res => !!res)).subscribe(res =>
+        {
+            this.keyIndicators = res;            
+        }         
+    )
       
-
-      this.opcoService.getOpcos().pipe(filter(res => !!res)).subscribe(
-          res => {
-            this.opcos = res;            
-            if( this.keyIndicators && this.opcos)
-                this.show();
-          }
-      );      
+    //get opcos list
+    this.opcoService.getOpcos().pipe(filter(res => !!res)).subscribe(
+        res => {
+        this.opcos = res;            
+        if( this.keyIndicators && this.opcos)
+            this.show();
+        }
+    );      
   }
 
 
@@ -157,29 +153,6 @@ export class DashboardComponent implements OnInit {
     }
 
     getDataForPie() {
-        // this.data = {
-        //     //Indicator: keyIndicator.indicator,
-        //     labels: ['Percentage','Target'],
-        //     datasets: [
-        //         {
-        //             data: [300, 100],
-        //             backgroundColor: [
-        //                 "#FF6384",
-        //                 "#36A2EB"
-        //             ],
-        //             hoverBackgroundColor: [
-        //                 "#FF6384",
-        //                 "#36A2EB"
-        //             ]
-        //         }],
-
-        //     };
-    
-        // this.pieData.push(this.data);
-        // this.pieData.push(this.data);
-        // this.pieData.push(this.data);
-        // this.pieData.push(this.data);
-        // this.pieData.push(this.data);
         
 
         this.opcos.forEach(opco => {
@@ -194,11 +167,11 @@ export class DashboardComponent implements OnInit {
                             data: [p, 100 - p],
                             backgroundColor: [
                                 "#09a627",
-                                "#FF6384"
+                                "#42A5F5"
                             ],
                             hoverBackgroundColor: [
                                 "#09a627",
-                                "#FF6384"
+                                "#42A5F5"
                             ]
                         }],
                     options: {
@@ -226,8 +199,6 @@ export class DashboardComponent implements OnInit {
     }
 
     opcoChange(){
-        console.log(this.selectedOpco)
-        debugger
         if(this.selectedOpco){
             this.opcoPieData = this.opcoData.filter(x => x.id == this.selectedOpco);
             this.opcoBarDataAll = this.datas.filter(x => x.Id == this.selectedOpco);
@@ -238,65 +209,19 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    getAllProjectKeyIndicatorYear(): ProjectKeyIndicatorYear[] {
-        return [
-           {
-                id: "",
-                comment: "",
-                keyIndicatorId: "",
-                project: new Project(),
-                projectId: "",
-                updatedBy: "",
-                updatedOn: "",
-                value: 100,
-                year: 2020
-            },
-            {
-                id: "",
-                comment: "",
-                keyIndicatorId: "",
-                project: new Project(),
-                projectId: "",
-                updatedBy: "",
-                updatedOn: "",
-                value: 100,
-                year: 2020
-            },
-        ]
+    yearChange(){
+        if(this.selectedYear){
+            this.projectKeyIndicatorYearService.getProjectKeyIndicatorByAllOpcoForAYear(this.selectedYear).pipe(filter(res => !! res)).subscribe(
+                res => {
+                    this.allOpcosForYear = res;
+                }
+            )
+            if(this.selectedOpco)    
+                this.projectKeyIndicatorYearService.getProjectKeyIndicatorForAnOpcoForAYear(this.selectedOpco, this.selectedYear).pipe(filter(res => !! res)).subscribe(
+                res => {
+                    this.opcosForYear = res;
+                }
+                )
+        }        
     }
-
-    getAllProjectKeyIndicatorMonth(): ProjectKeyIndicator[] {
-        return [
-            {
-                id: "",
-                comment: "",
-                keyIndicatorId: "",
-                project: new Project(),
-                projectId: "",
-                updatedBy: "",
-                updatedOn: "",
-                month: 1,
-                year: 2020,
-                actual: 99,
-                keyIndicator: new KeyIndicator 
-            },
-            {
-                id: "",
-                comment: "",
-                keyIndicatorId: "",
-                project: new Project(),
-                projectId: "",
-                updatedBy: "",
-                updatedOn: "",
-                month: 1,
-                year: 2019,
-                actual: 99,
-                keyIndicator: new KeyIndicator 
-            },
-        ]
-    }
-
-
-
-
 }

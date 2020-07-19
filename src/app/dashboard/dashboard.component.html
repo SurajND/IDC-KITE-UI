@@ -9,14 +9,13 @@
         </mat-select>
       </div>
       <div fxFlex>
-        <mat-select [(value)]="selectedYear" placeholder="Select a Year">
-          <mat-option>All</mat-option>
-          <mat-option value="2020">2020</mat-option>
-          <mat-option value="2019">2019</mat-option>
-          <mat-option value="2018">2018</mat-option>
+        <mat-select [(ngModel)]="selectedYear" (ngModelChange)="yearChange()" placeholder="Select a Year">
+          <mat-option *ngFor="let year of yearsList" [value]="year">
+            {{year}}
+          </mat-option>
         </mat-select>
       </div>
-      <div fxFlex>
+      <!-- <div fxFlex>
         <mat-select [(value)]="selectedQuater" placeholder="Select a Quarter">
           <mat-option>All</mat-option>
           <mat-option value="Q4">Q4</mat-option>
@@ -24,7 +23,7 @@
           <mat-option value="Q2">Q2</mat-option>
           <mat-option value="Q1">Q1</mat-option>
         </mat-select>
-      </div>
+      </div> -->
     </div>    
 
     <div *ngFor="let opco of opcoPieData">      
@@ -68,7 +67,7 @@
               </p-carousel>              
             </div> 
             <div fxFlex="50%">
-            <label class="dashboard-label-style">Quaterly {{selectedQuater}}</label>
+            <label class="dashboard-label-style">Last six Months </label>
               <p-carousel [value]="datas" [numVisible]="1" [numScroll]="1" [circular]="true">
                 <ng-template let-keyIndicator pTemplate="item">
                   <div class="graph-text-style"> {{keyIndicator.Indicator}}</div>

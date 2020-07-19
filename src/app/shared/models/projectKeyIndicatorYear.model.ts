@@ -11,3 +11,12 @@ export class ProjectKeyIndicatorYear {
     updatedBy: string;
     updatedOn: string;
 }
+
+export class OpcosForYear{
+    opco: string;
+    value: ProjectKeyIndicatorYear[] = []
+}
+
+export class AllOpcosForYear{
+    opcos: OpcosForYear[] = []
+}
