@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
                     label: 'Target',
                     backgroundColor: '#42A5F5',
                     borderColor: '#1E88E5',
-                    data: [65, 59, 80, 81, 56, 55, 40],
+                    data: [65, 59, 80, 81, 56, 55, 40] ,
                     fill: false
                 },
                 {
@@ -153,7 +153,9 @@ export class DashboardComponent implements OnInit {
     }
 
     getDataForPie() {
-        
+        this.getOpcoValuesByYear();
+        this.getOpcosValuesByYear(this.curryear);
+       
 
         this.opcos.forEach(opco => {
             let pieData: any[] = [];
@@ -200,28 +202,77 @@ export class DashboardComponent implements OnInit {
 
     opcoChange(){
         if(this.selectedOpco){
+            var list = this.getOpcoValuesByYear();
             this.opcoPieData = this.opcoData.filter(x => x.id == this.selectedOpco);
             this.opcoBarDataAll = this.datas.filter(x => x.Id == this.selectedOpco);
         }
         else{
+            var list = this.getOpcosValuesByYear(this.selectedYear);
             this.opcoPieData = this.opcoData;
             this.opcoBarDataAll = this.datas;
         }
     }
+    
+    getOpcoValuesByYear(){
+        if(!this.opcosForYear && this.selectedOpco)
+        this.projectKeyIndicatorYearService.getProjectKeyIndicatorForAnOpcoForAYear(this.selectedOpco, this.selectedYear).pipe(filter(res => !! res)).subscribe(
+            res => {
+                this.opcosForYear = res;
+            }
+        )
+    }
 
-    yearChange(){
-        if(this.selectedYear){
-            this.projectKeyIndicatorYearService.getProjectKeyIndicatorByAllOpcoForAYear(this.selectedYear).pipe(filter(res => !! res)).subscribe(
-                res => {
-                    this.allOpcosForYear = res;
-                }
-            )
-            if(this.selectedOpco)    
-                this.projectKeyIndicatorYearService.getProjectKeyIndicatorForAnOpcoForAYear(this.selectedOpco, this.selectedYear).pipe(filter(res => !! res)).subscribe(
-                res => {
-                    this.opcosForYear = res;
-                }
-                )
-        }        
+    getOpcosValuesByYear(curryear){
+        if(!this.allOpcosForYear)
+        this.projectKeyIndicatorYearService.getProjectKeyIndicatorByAllOpcoForAYear(this.curryear).pipe(filter(res => !! res)).subscribe(
+            res => {
+                this.allOpcosForYear = new AllOpcosForYear();
+                this.allOpcosForYear.opcos = res; 
+                this.pieFormation();               
+            }
+        )
+    }
+
+    pieFormation(){
+        this.allOpcosForYear.opcos.forEach(element => {
+            let pieData: any[] = [];
+            element.value.forEach(k => {
+                let p = this.getRandomInt(50, 100)
+                let data = {
+                    Indicator: this.keyIndicators.find(i => i.id == k.keyIndicatorId).indicator,
+                    labels: [ Math.floor((p/100)*100) + '%',  Math.floor((100 - p)/100 * 100) + '%'],
+                    datasets: [
+                        {
+                            data: [p, 100 - p],
+                            backgroundColor: [
+                                "#09a627",
+                                "#42A5F5"
+                            ],
+                            hoverBackgroundColor: [
+                                "#09a627",
+                                "#42A5F5"
+                            ]
+                        }],
+                    options: {
+                            title: {
+                                display: true,
+                                text: this.keyIndicators.find(i => i.id == k.keyIndicatorId).indicator,
+                                fontSize: 14,
+                                fontColor: "#19639E"
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    };                
+                pieData.push(data);
+            });
+         
+            this.opcoData.push({
+                "name" : this.opcos.find(x => x.id == element.opco).operationalCompanyName,
+                "chart" : pieData,
+                "id" : element.opco
+            });  
+        });
     }
 }

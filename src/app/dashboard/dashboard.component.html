@@ -9,7 +9,7 @@
         </mat-select>
       </div>
       <div fxFlex>
-        <mat-select [(ngModel)]="selectedYear" (ngModelChange)="yearChange()" placeholder="Select a Year">
+        <mat-select [(ngModel)]="selectedYear" (ngModelChange)="opcoChange()" placeholder="Select a Year">
           <mat-option *ngFor="let year of yearsList" [value]="year">
             {{year}}
           </mat-option>

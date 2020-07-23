@@ -7,14 +7,14 @@ export class ProjectKeyIndicatorYear {
     comment: string;
     keyIndicatorId: string;
     projectId: string;
-    project: Project;
+    project: Project = new Project();
     updatedBy: string;
     updatedOn: string;
 }
 
 export class OpcosForYear{
     opco: string;
-    value: ProjectKeyIndicatorYear[] = []
+    value: ProjectKeyIndicatorYear[] = [];
 }
 
 export class AllOpcosForYear{
