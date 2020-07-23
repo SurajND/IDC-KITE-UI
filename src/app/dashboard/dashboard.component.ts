@@ -82,70 +82,33 @@ export class DashboardComponent implements OnInit {
 
   show() {
       this.getDataForPie();
-      for(let keyIndicator of this.keyIndicators){
-          let chart = {
-            Id: this.opcos.map(x => x.id),
-            Indicator: keyIndicator.indicator,
-            labels: this.opcos.map(x => x.operationalCompanyName),
-            datasets: [
-                {
-                    label: 'Target',
-                    backgroundColor: '#42A5F5',
-                    borderColor: '#1E88E5',
-                    data: [65, 59, 80, 81, 56, 55, 40] ,
-                    fill: false
-                },
-                {
-                    label: 'Actual',
-                    backgroundColor: '#9CCC65',
-                    borderColor: '#7CB342',
-                    data: [28, 48, 40, 19, 86, 27, 90],
-                    fill: false
-                }
-            ]
-        }
+    //   for(let keyIndicator of this.keyIndicators){
+    //       let chart = {
+    //         Id: this.opcos.map(x => x.id),
+    //         Indicator: keyIndicator.indicator,
+    //         labels: this.opcos.map(x => x.operationalCompanyName),
+    //         datasets: [
+    //             {
+    //                 label: 'Target',
+    //                 backgroundColor: '#42A5F5',
+    //                 borderColor: '#1E88E5',
+    //                 data: [65, 59, 80, 81, 56, 55, 40] ,
+    //                 fill: false
+    //             },
+    //             {
+    //                 label: 'Actual',
+    //                 backgroundColor: '#9CCC65',
+    //                 borderColor: '#7CB342',
+    //                 data: [28, 48, 40, 19, 86, 27, 90],
+    //                 fill: false
+    //             }
+    //         ]
+    //     }
         
-        this.datas.push(chart);
-      }
+    //     this.datas.push(chart);
+    //   }
 
-      this.opcoBarDataAll = this.datas;
-
-      
-
-
-
-      for (let keyIndicator of this.keyIndicators) {
-          let dataSetActual : number[] = [];
-          let dataSetTarget : number[] = [];
-          for (let opco of this.opcos) {
-
-              
-              // dataSetActual.push(this.projectKeyIndicators
-              //     .filter(x => x.keyIndicatorId === keyIndicator.id)
-              //     .filter(x => x.project.operationalCompanyId === opco.id)
-              //     .reduce((sum, item) => sum + item.actual, 0));
-
-                  // dataSetTarget.push(this.projectKeyIndicatorYears
-                  // .filter(x => x.keyIndicatorId === keyIndicator.id)
-                  // .find(x => x.project.operationalCompanyId === opco.id).value)
-
-
-
-              // this.showResult.push(
-              //     (this.projectKeyIndicators
-              //         .filter(x => x.keyIndicatorId === keyIndicator.id)
-              //         .filter(x => x.project.operationalCompanyId === opco.id)
-              //         .reduce((sum, item) => sum + item.actual, 0))
-              // ) ;
-              // console.log(this.showResult)
-          }
- 
-      
-
-          
-      }
-
-
+    //   this.opcoBarDataAll = this.datas;
   }
 
     getRandomInt(min, max) {
@@ -155,49 +118,6 @@ export class DashboardComponent implements OnInit {
     getDataForPie() {        
         this.getOpcoValuesByYear();
         this.getOpcosValuesByYear(this.curryear);
-       
-
-        // this.opcos.forEach(opco => {
-        //     let pieData: any[] = [];
-        //     this.keyIndicators.forEach(keyIndicator => {
-        //         let p = this.getRandomInt(50, 100)
-        //         let data = {
-        //             Indicator: keyIndicator.indicator,
-        //             labels: [ Math.floor((p/100)*100) + '%',  Math.floor((100 - p)/100 * 100) + '%'],
-        //             datasets: [
-        //                 {
-        //                     data: [p, 100 - p],
-        //                     backgroundColor: [
-        //                         "#09a627",
-        //                         "#42A5F5"
-        //                     ],
-        //                     hoverBackgroundColor: [
-        //                         "#09a627",
-        //                         "#42A5F5"
-        //                     ]
-        //                 }],
-        //             options: {
-        //                     title: {
-        //                         display: true,
-        //                         text: keyIndicator.indicator,
-        //                         fontSize: 14,
-        //                         fontColor: "#19639E"
-        //                     },
-        //                     legend: {
-        //                         position: 'bottom'
-        //                     }
-        //                 }
-        //             };                
-        //         pieData.push(data);
-        //     });            
-        //     this.opcoData.push({
-        //         "name" : opco.operationalCompanyName,
-        //         "chart" : pieData,
-        //         "id" : opco.id
-        //     });            
-        // });
-
-        // this.opcoPieData = this.opcoData;
     }
 
     opcoChange(){
@@ -228,7 +148,8 @@ export class DashboardComponent implements OnInit {
             res => {
                 this.allOpcosForYear = new AllOpcosForYear();
                 this.allOpcosForYear.opcos = res; 
-                this.pieFormation();               
+                this.pieFormation(); 
+                this.barChartFormation();              
             }
         )
     }
@@ -280,5 +201,35 @@ export class DashboardComponent implements OnInit {
             }
             
         });
+    }
+
+    barChartFormation(){
+        for(let keyIndicator of this.keyIndicators){    
+                let chart = {
+                    Id: this.allOpcosForYear.opcos.map(x => x.opco),
+                    Indicator: keyIndicator.indicator,
+                    labels: this.allOpcosForYear.opcos.map(x => x.operationalCompanyName),
+                    datasets: [
+                        {
+                            label: 'Target',
+                            backgroundColor: '#42A5F5',
+                            borderColor: '#1E88E5',
+                            data: [100, 100, 100, 100, 100, 100],
+                            fill: false
+                        },
+                        {
+                            label: 'Actual',
+                            backgroundColor: '#9CCC65',
+                            borderColor: '#7CB342',
+                            data: this.allOpcosForYear.opcos.map(x => x.value.find(p => p.keyIndicatorId == keyIndicator.id) == null ? 0 
+                            : x.value.find(z => z.keyIndicatorId == keyIndicator.id).value),
+                            fill: false
+                        }
+                    ]
+                }
+                this.datas.push(chart);
+                 
+            this.opcoBarDataAll = this.datas;
+        }      
     }
 }
