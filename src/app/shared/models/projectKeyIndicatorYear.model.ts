@@ -14,6 +14,7 @@ export class ProjectKeyIndicatorYear {
 
 export class OpcosForYear{
     opco: string;
+    OperationalCompanyName : string;
     value: ProjectKeyIndicatorYear[] = [];
 }
 

@@ -148,56 +148,56 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    getDataForPie() {
+    getDataForPie() {        
         this.getOpcoValuesByYear();
         this.getOpcosValuesByYear(this.curryear);
        
 
-        this.opcos.forEach(opco => {
-            let pieData: any[] = [];
-            this.keyIndicators.forEach(keyIndicator => {
-                let p = this.getRandomInt(50, 100)
-                let data = {
-                    Indicator: keyIndicator.indicator,
-                    labels: [ Math.floor((p/100)*100) + '%',  Math.floor((100 - p)/100 * 100) + '%'],
-                    datasets: [
-                        {
-                            data: [p, 100 - p],
-                            backgroundColor: [
-                                "#09a627",
-                                "#42A5F5"
-                            ],
-                            hoverBackgroundColor: [
-                                "#09a627",
-                                "#42A5F5"
-                            ]
-                        }],
-                    options: {
-                            title: {
-                                display: true,
-                                text: keyIndicator.indicator,
-                                fontSize: 14,
-                                fontColor: "#19639E"
-                            },
-                            legend: {
-                                position: 'bottom'
-                            }
-                        }
-                    };                
-                pieData.push(data);
-            });            
-            this.opcoData.push({
-                "name" : opco.operationalCompanyName,
-                "chart" : pieData,
-                "id" : opco.id
-            });            
-        });
+        // this.opcos.forEach(opco => {
+        //     let pieData: any[] = [];
+        //     this.keyIndicators.forEach(keyIndicator => {
+        //         let p = this.getRandomInt(50, 100)
+        //         let data = {
+        //             Indicator: keyIndicator.indicator,
+        //             labels: [ Math.floor((p/100)*100) + '%',  Math.floor((100 - p)/100 * 100) + '%'],
+        //             datasets: [
+        //                 {
+        //                     data: [p, 100 - p],
+        //                     backgroundColor: [
+        //                         "#09a627",
+        //                         "#42A5F5"
+        //                     ],
+        //                     hoverBackgroundColor: [
+        //                         "#09a627",
+        //                         "#42A5F5"
+        //                     ]
+        //                 }],
+        //             options: {
+        //                     title: {
+        //                         display: true,
+        //                         text: keyIndicator.indicator,
+        //                         fontSize: 14,
+        //                         fontColor: "#19639E"
+        //                     },
+        //                     legend: {
+        //                         position: 'bottom'
+        //                     }
+        //                 }
+        //             };                
+        //         pieData.push(data);
+        //     });            
+        //     this.opcoData.push({
+        //         "name" : opco.operationalCompanyName,
+        //         "chart" : pieData,
+        //         "id" : opco.id
+        //     });            
+        // });
 
-        this.opcoPieData = this.opcoData;
+        // this.opcoPieData = this.opcoData;
     }
 
     opcoChange(){
@@ -237,13 +237,14 @@ export class DashboardComponent implements OnInit {
         this.allOpcosForYear.opcos.forEach(element => {
             let pieData: any[] = [];
             element.value.forEach(k => {
-                let p = this.getRandomInt(50, 100)
+                if(k == null)
+                    return;
                 let data = {
                     Indicator: this.keyIndicators.find(i => i.id == k.keyIndicatorId).indicator,
-                    labels: [ Math.floor((p/100)*100) + '%',  Math.floor((100 - p)/100 * 100) + '%'],
+                    labels: [ Math.floor((k.value/100)*100) + '%',  Math.floor((100 - k.value)/100 * 100) + '%'],
                     datasets: [
                         {
-                            data: [p, 100 - p],
+                            data: [k.value, 100 - k.value],
                             backgroundColor: [
                                 "#09a627",
                                 "#42A5F5"
@@ -267,12 +268,17 @@ export class DashboardComponent implements OnInit {
                     };                
                 pieData.push(data);
             });
-         
-            this.opcoData.push({
-                "name" : this.opcos.find(x => x.id == element.opco).operationalCompanyName,
-                "chart" : pieData,
-                "id" : element.opco
-            });  
+            
+            if(pieData.length > 0){
+                this.opcoData.push({
+                    "name" : this.opcos.find(x => x.id == element.opco).operationalCompanyName,
+                    "chart" : pieData,
+                    "id" : element.opco
+                });  
+    
+                this.opcoPieData = this.opcoData;
+            }
+            
         });
     }
 }
